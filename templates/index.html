@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block content %}
+            <script>
+                function showDiv() {
+                    document.getElementById('loading').style.display = "inline-block";
+                }
+            </script>
+            <div class="p-5 mb-4 rounded-3 container-bg">
+                <div class="container-fluid py-5">
+                    <h1 class="display-5 fw-bold">Корпус судебных заседаний</h1>
+                    <p class="col-md-8 fs-5">Добро пожаловать в корпус судебных заседаний Медиазоны</p>
+                    <form method="get" action="/process">
+                        <p class="col-md-6"><input type="text" placeholder="Введите Ваш запрос..." id="query" name="query" class="form-control"></p>
+                        <button class="btn btn-secondary btn-lg" onclick="showDiv()" type="submit">Искать</button>
+                        <div id="loading" class="spinner-grow spinner-grow-sm text-light" role="status" style="display:none;">
+                            <span class="visually-hidden">Загрузка...</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row align-items-md-stretch">
+                <div class="col-md-6">
+                    <div class="h-100 p-5 text-white bg-dark rounded-3">
+                        <h2>О корпусе</h2>
+                        <p>В корпусе размечены тексты трансляций судебных заседаний по громким политическим делам в период с 2014 по 2021 гг. </p>
+                        <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Как пользоваться?</button>
+                        <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel" style="color: black" ;>Инструкция к корпусу</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" style="color: #212529">
+                                        <div class="container">
+                                            <p>Запрос может представлять из себя комбинацию лемм, словоформ, заключённых в кавычки, и частей речи.</p>
+                                            <p>Разделите Ваш запрос на пробелы и поместите в кавычки ту его часть, которую хотите найти исключительно в заданной форме.
+                                                Так, запрос <kbd style="background-color: #616161">"судья"</kbd> выведет вхождения слова
+                                                <i>судья</i> только в начальной форме и нижнем регистре, а <kbd style="background-color: #616161">судья</kbd>
+                                                — во всех его формах, включая <i>Судья, су́дьи, судьёй</i> и пр. Вы также можете указать часть речи у определённого слова: например, запрос <kbd style="background-color: #616161">знать+VERB</kbd> выведет словоформы глагола <i>знать</i>, игнорируя его морфологический омоним.</p>
+                                            <p>Ниже приведён список частеречных тегов, которые вы можете задавать в поле поиска. Так, запрос <kbd style="background-color: #616161">"Навальный" VERB ADP NOUN</kbd> покажет результаты вида "<i>Навальный сидит в тюрьме</i>".</p>
+                                            <div class="row">
+                                                <div class="col-sm">
+                                                    <table class="table table-hover">
+                                                        <tbody>
+                                                            <tr><td>NOUN</td><td>Существительное</td></tr>
+                                                            <tr><td>VERB</td><td>Глагол</td></tr>
+                                                            <tr><td>ADJ</td><td>Прилагательное</td></tr>
+                                                            <tr><td>ADV</td><td>Наречие</td></tr>
+                                                            <tr><td>ADP</td><td>Предлог</td></tr>
+                                                            <tr><td>INTJ</td><td>Междометие</td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="col-sm">
+                                                    <table class="table table-hover">
+                                                        <tbody>
+                                                            <tr><td>CCONJ</td><td>Сочинительный союз</td></tr>
+                                                            <tr><td>SCONJ</td><td>Подчинительный союз</td></tr>
+                                                            <tr><td>NUM</td><td>Числительное</td></tr>
+                                                            <tr><td>PRON</td><td>Местоимение</td></tr>
+                                                            <tr><td>PART</td><td>Частица</td></tr>
+                                                            <tr><td>AUX</td><td>Вспомогательный глагол</td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <p>Все материалы принадлежат изданию <a class="link-secondary" href="https://zona.media" target="_blank">«Медиазона»</a>.
+                                                Морфологическая разметка корпуса реализована с помощью библиотеки <a class="link-secondary" href="https://stanfordnlp.github.io/stanza/" target="_blank">Stanza</a>.
+                                                По вопросам о работе корпуса обращайтесь в Telegram к его авторам <a class="link-secondary" href="https://t.me/maaliskuu" target="_blank">@maaliskuu</a> (Игорь Марченко) и <a class="link-secondary" href="https://t.me/zoiabutenko" target="_blank">@zoiabutenko</a> (Зоя Бутенко).</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="h-100 p-5 bg-light border rounded-3">
+                        <h2>!</h2>
+                        <p>Материалы на данном сайте созданы и (или) распространены иностранным средством массовой информации,
+                            выполняющим функции иностранного агента, и (или) российским юридическим лицом, выполняющим функции
+                            иностранного агента.</p>
+                    </div>
+                </div>
+            </div>
+{% endblock %}
